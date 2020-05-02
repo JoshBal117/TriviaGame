@@ -12,8 +12,9 @@ $(document).ready(function() {
     let score = 0; // this is going to equal the amount of right questions
     let correctAnswers = 0;
     let incorrectAnswers = 0;
-    let timer = 20;
-
+    let timer = 20000;
+    
+w
 
 
     //this is  for loop to cycle through the questions
