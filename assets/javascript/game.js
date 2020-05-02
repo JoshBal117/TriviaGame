@@ -12,6 +12,7 @@ $(document).ready(function() {
     let score = 0; // this is going to equal the amount of right questions
     let correctAnswers = 0;
     let incorrectAnswers = 0;
+    let missedAnswer= 0;
     //this is the timer for the game
     let timer = 60;
     let timeOut = 1000 * 5;
@@ -23,7 +24,18 @@ $(document).ready(function() {
 
 w
     // this is the game start button
-    $('.start-button');
+    $('startGame').click(function()) {
+        //putting into place an object Interval so that we can stop the interval later
+        intervalId = setInterval(decrement, 1000)
+        //This is a JQuery fucntion to write the questions in place of the  Start Button 
+        writeQuestions();
+        $("startGame").hide();
+        writeSubmitButton();
+        console.log(writeSubmitButton "we are ready here")
+
+
+
+    }
 
     //this is  for loop to cycle through the questions
 
