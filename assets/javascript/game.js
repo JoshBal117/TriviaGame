@@ -12,10 +12,16 @@ $(document).ready(function() {
     let score = 0; // this is going to equal the amount of right questions
     let correctAnswers = 0;
     let incorrectAnswers = 0;
-    let timer = 20000;
-    
-w
+    //this is the timer for the game
+    let timer = 20;
+    let timeOut = 1000 * 5;
+    let inervalId;
+    let timerRunning = false;
 
+
+w
+    // this is the game start button
+    $('.start-button');
 
     //this is  for loop to cycle through the questions
 
