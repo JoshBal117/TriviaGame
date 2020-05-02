@@ -6,7 +6,7 @@ $(document).ready(function() {
     //on the document its self. 
    
     // setting up some variables, and an object within the vriable for the questions
-    let trivia = [] // thisis going to be an array of questions held here
+    let trivQuestions = [] // thisis going to be an array of questions held here
     let score = 0;
     
     let currentQuestion = 0 
@@ -28,6 +28,7 @@ startGame();
 
     function startGame(){
         console.log('game is ready')
+        $('#startGame').on('click', )
 
         //this is  for loop to cycle through the questions
     
@@ -50,5 +51,10 @@ startGame();
                 timer = 60;
         }
         }, 1000);
+
+
+        function logic() {
+
+        }
     
 }})   
