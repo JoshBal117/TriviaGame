@@ -7,8 +7,10 @@ $(document).ready(function() {
    
     // setting up some variables, and an object within the vriable for the questions
     let trivia = [] // thisis going to be an array of questions held here
-    let score = 0; // this is going to equal the amount of right questions
-    let correctAnswers = 0;
+    let score = 0;
+    
+    let currentQuestion = 0 
+    let correctAnswers = 0; // this is going to equal the amount of right questions
     let incorrectAnswers = 0;
     let missedAnswer= 0;
     //this is the timer for the game
@@ -18,59 +20,35 @@ $(document).ready(function() {
     let isCorrect = false;
     let inervalId;
     let timerRunning = false
+    let i = 0;
 
 
 startGame();
 
 
     function startGame(){
-        $('#remaining-time').show();
-        $('document').on('click','.option', trivia.startGame );
-        $('document').on('click', '.option', trivia.guesschecker);
+        console.log('game is ready')
 
         //this is  for loop to cycle through the questions
-
-
-
-        //ths is the timer for countdown
-        // timer 
-        let counter = {
-            // Amount of time for each question
-            timeRemaining: timeSetting,
-
-        start: function() {
-            console.lot('ready')
-            // Sets the interval if timer is not running
-            if (!timerRunning) {
-                intervalId = setInterval(timer.count, 1000);
-                timerRunning = true;
-                console.log('timerRunning', 'FIRE!')
-            }
-        },
-
-        stop: function() {
-      
-            // Clears the timer and resets
-            clearInterval(intervalId);
-            timerRunning = false;
-            timer.timeRemaining = timeSetting;
-        },
-
-        count: function() {
-
-            // Subtract one from time remaining
-            timer.timeRemaining--;
-            $(".timer-display").text(timer.timeRemaining);
     
-            // Go to time out screen once timer reaches 0
-            if (timer.timeRemaining === 0) {
-                timedOut = true;
-                timer.stop();
-                outOfTime();
-            } console.log('timerRemaining')
 
-    }
 
-        }; 
-    }
-})   
+       
+        //this is the timer function for the game, if the player runs out of time for the whoe game
+        //the game ends 
+
+        let interval = setInterval(function() {
+            timer--;
+            console.log('timer')
+            $('timer').text(timer);
+            if (timer === 0) {
+                currentQuestion++;
+                $("#trivbuttons").empty();
+                i++;
+                $("#response").empty();
+                logic();
+                timer = 60;
+        }
+        }, 1000);
+    
+}})   
