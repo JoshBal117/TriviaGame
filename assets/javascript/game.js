@@ -19,6 +19,7 @@ $(document).ready(function() {
     let score = 0;
     let gameStatus = [];
     let currentQuestion = 0;
+    let wins = 0;
     
     //this is the timer for the game
     let timer = 60;
@@ -45,7 +46,7 @@ startGame();
         
         
         
-        
+
         //this is  for loop to cycle through the questions
     
 

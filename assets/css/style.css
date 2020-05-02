@@ -1,6 +1,10 @@
+.jumbotron{
+    color: #feda4a;
+}
+
 body{ background-image: url(assets/images/Endor-Battle.jpeg);
 }
 
-.start{
-    
+.startGame {
+    color: #feda4a
 }
