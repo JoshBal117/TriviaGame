@@ -13,8 +13,10 @@ $(document).ready(function() {
     let correctAnswers = 0;
     let incorrectAnswers = 0;
     //this is the timer for the game
-    let timer = 20;
+    let timer = 60;
     let timeOut = 1000 * 5;
+    let timedOut = false;
+    let isCorrect = false;
     let inervalId;
     let timerRunning = false;
 
@@ -25,4 +27,46 @@ w
 
     //this is  for loop to cycle through the questions
 
-})
+
+
+    //ths is the timer for countdown
+    // timer 
+    let timer = {
+        // Amount of time for each question
+        timeRemaining: timeSetting,
+
+        start: function() {
+
+            // Sets the interval if timer is not running
+            if (!timerRunning) {
+                intervalId = setInterval(timer.count, 1000);
+                timerRunning = true;
+            }
+        },
+
+        stop: function() {
+      
+            // Clears the timer and resets
+            clearInterval(intervalId);
+            timerRunning = false;
+            timer.timeRemaining = timeSetting;
+        },
+
+        count: function() {
+
+            // Subtract one from time remaining
+            timer.timeRemaining--;
+            $(".timer-display").text(timer.timeRemaining);
+    
+            // Go to time out screen once timer reaches 0
+            if (timer.timeRemaining === 0) {
+                timedOut = true;
+                timer.stop();
+                outOfTime();
+            } console.log(timerRemaining)
+
+    }
+
+};
+}
+    
