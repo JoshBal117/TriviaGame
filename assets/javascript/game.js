@@ -21,7 +21,7 @@ $(document).ready(function() {
     let currentQuestion = 0;
     let wins = 0;
     
-    //this is the timer for the game
+    //this is the timer for the game, where timer is the js timer; and time is the actual game time
     let timer = 60;
     let timeOut = 1000 * 5;
     let timedOut = false;
@@ -55,22 +55,22 @@ startGame();
         //this is the timer function for the game, if the player runs out of time for the whoe game
         //the game ends 
 
-        // let interval = setInterval(function() {
-        //     timer--;
-        //     console.log('timer')
-        //     $('timer').text(timer);
-        //     if (timer === 0) {
-        //         currentQuestion++;
-        //         $("#trivbuttons").empty();
-        //         i++;
-        //         $("#response").empty();
-        //         logic();
-        //         timer = 60;
-        // }
-        // }, 1000);
+        let interval = setInterval(function() {
+            timer--;
+            console.log('timer')
+            $('timer').text(timer);
+            if (timer === 0) {
+                currentQuestion++;
+                $("#trivbuttons").empty();
+                i++;
+                $("#response").empty();
+                logic();
+                timer = 60;
+        }
+        }, 1000);
 
 
-        // function logic() {
+    
 
         // }
     
