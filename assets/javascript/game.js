@@ -67,12 +67,12 @@ $(document).ready(function() {
     let userPick = [];
 
     //this is the timer for the game, where timer is the js timer; and time is the actual game time
-    let counter = 10;
+    let counter = 60;
     let timeOut = 1000 * 5;
     let timeDisplay;
     let timedOut = false;
     let isCorrect = false;
-    
+    var intervalId;
     let timerRunning = false
 
 
