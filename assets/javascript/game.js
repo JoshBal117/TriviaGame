@@ -11,48 +11,48 @@ $(document).ready(function() {
     let trivQuestions = [
         {
             Question : "Yoda is how old in the Return of The Jedi?",
-        Answers:{ 
-                A: "700 years old", 
-                B: "800 years old", 
-                C: "900 years old", 
-                D: "1100 years old",
-            },
+        Answers:[ 
+                 "700 years old", 
+                 "800 years old", 
+                 "900 years old", 
+                 "1100 years old",
+        ],
             correctAnswer: "3"
         },
         {Question : "Luke wanted to get what from Tosche Station?",
-        Answers:{   
-                A: "Power Couplings", 
-                B: "Power Converters", 
-                C: "Droid Inhibitor", 
-                D: "Lightsaber"
-            },
+        Answers:[   
+                 "Power Couplings", 
+                 "Power Converters", 
+                 "Droid Inhibitor", 
+                 "Lightsaber"
+        ],
             correctAnswer: "2"
         },
            {Question: "Anakin is what as a child?",
-           Answers:{
-                A: "A Jedi", 
-                B: "A Store Owner", 
-                C: "A Pilot", 
-                D: "A Slave",
-           },
+           Answers:[
+                 "A Jedi", 
+                 "A Store Owner", 
+                 "A Pilot", 
+                 "A Slave",
+    ],
            correctAnswer: "4"
         },
-            {Question: "Obi Wan Kenobi is called what by Princess Leia?",
-            Answers:{
-                A: "An Old Goat", 
-                B: "General Kenobi", 
-                C: "Ben Kenobi", 
-                D: "The Negotiator"
-            },
+        {Question: "Obi Wan Kenobi is called what by Princess Leia?",
+            Answers:[
+                 "An Old Goat", 
+                 "General Kenobi", 
+                 "Ben Kenobi", 
+                 "The Negotiator"
+    ],
             correctAnswer: "2"
         },
             {Question: "Who is pursuing the Rebel Blockade Runner in Episode IV?",
-            Answers:{
-                A: "Darth Vader", 
-                B: "Darth Maul", 
-                C: "Darth Tyranus", 
-                D: "Darth Bane" 
-            },
+            Answers:[
+                 "Darth Vader", 
+                 "Darth Maul", 
+                 "Darth Tyranus", 
+                 "Darth Bane" 
+            ],
             correctAnswer: "1"            
                     },
     ] // this is going to be an array of questions held here
