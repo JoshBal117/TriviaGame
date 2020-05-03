@@ -6,15 +6,8 @@ $(document).ready(function() {
     //on the document its self. 
    
     // setting up some variables, and an object within the vriable for the questions
-    let player = {
-        isPlaying: false,
-        isWaiting: false,
-        correctAnswers: 0,
-        incorrectAnswers: 0,
-        missedAnswer: 0,
-        wins: 0,
-        losses: 0,
-    }
+  
+    
     let trivQuestions = [
         {
             Question : "Yoda is how old in the Return of The Jedi?",
@@ -66,100 +59,83 @@ $(document).ready(function() {
     let score = 0;
     let gameStatus = [];
     let currentQuestion = 0;
+    let correctAnswers = 0;
+    let missedAnswers = 0;
     let questionNumber = 0;
     let wins = 0;
-    //further global vairables for the quiz
-    const quizContainer = document.getElementById('formQuiz')
-    const resultsConatiner = document.getElementById('quizResults')
-    const submitButton = document.getElementById('submit')
-
+    let incorrectAnswers =0;
+    
 
     //this is the timer for the game, where timer is the js timer; and time is the actual game time
     let timer = 60;
     let timeOut = 1000 * 5;
+    let timeDisplay;
     let timedOut = false;
     let isCorrect = false;
     let inervalId;
     let timerRunning = false
-    let i = 0;
 
 
-    startGame();
-
-
-    // function startGame(){
-    //     // $('#startGame').on('click', function(playerInitilization) {
-        //     player.isPlaying = !player.isPlaying
-        //     gameStatus= []
-        //     player.correctAnswers = 0;
-        //     player.incorrectAnswers = 0;
-        //     trivQuestions = createTrivQuestions();
-        // })
-        // console.log('startGame is ready')
-        
-        const output = []
-        
-
-        //this is a for loop to cycle through the questions
-           trivQuestions.forEach((currentQuestion, questionNumber => { const Answers = []
-                for (letter in currentQuestion.Answers){
-                    //this will add an HTML radio button
-                    Answers.push(
-                        <label>
-                            <input type="radio" name="questions${questionsNumber}" value="${letter)"></input>
-                            ${letter}:
-                            ${currentQuestion.Answers[letter]}
-                        </label>
-                    );
-                }
-                output.push(
-                    `<div class="question"> ${currentQuestion.question} </div>
-                    <div class="answers"> ${Answers.join('')} </div>`
-                        );
-                   }    
-                ))
-               
-
-                formQuiz.innerHTML = output.join('');
-
-        //this is the timer function for the game, if the player runs out of time for the whoe game
-        //the game ends 
-        // setTimeout(function(){
-        //     console.log(timer)
+    for (var i = 0; i < questions.length; i++) {
+        userPick[i] = null;
 
         
 
-        // let interval = setInterval(function() {
-        //     timer--;
-           
-        //     $('timer').text(timer);
-        //     if (timer === 0) {
-        //         currentQuestion++;
-        //         $("#trivbuttons").empty();
-        //         i++;
-        //         $("#response").empty();
-        //         logic();
-        //         timer = 60;
-        // }        console.log('timer')
-        // }, 1000);
-
-
+        $("#startGame").click(function () {
+            console.log('startGame')
+            //Attach the setInterval object to a variable so that we can stop it later
+            intervalID = setInterval(decrement, 1000);
+            //Use jQuery to call the function to write the questions to the html
+            writeQuestions();
+            $("#startGame").hide();
+            writeSubmitButton();
     
+            $("#submitQuiz").click(function () {
+                showResults();
+            });
+            //This is the listener that will record the function that tracks what the user has clicked
+            //This works because we structured the radio button groups with index x and i
+            //This allows me to know what question the user picked (i) and the response (value).
+            $("input").click(function () {
+                userPick[this.name] = this.value;
+            });
+        });
+    
+        function answerButton() {
+            for (var i = 0; i < trivQuestions[currentQuestion].Answers.length; i++) {
+        
+                // We create a button 
+                var button = $("<button>");
+        
+                // Assigns the name of the array to the button.
+                button.text(trivQuestion[currentQuestion].Answers[i]);
+        
+                // We create a class for the buttons 
+                button.addClass("answer-buttons btn btn-primary");
+        
+                //ADDED AN ATTRIBUTE TO THE BUTTON THAT CREATES A PATH TO THE VALUES ARRAY AND TIES THE VALUE TO THE BUTTON. EXAMPLE. THE INDEX[0] OF VALUES WILL BE TIED TO THE INDEX[0] OF CHOICES.
+                button.attr("value", trivQuestion[currentQuestion].Answers[i]);
+                // CREATES AN ATTRIBUTE DATA NAME AND SETS IT EQUAL TO THE ARRAY ITEMS NAME.
+                button.attr("Data-name", trivQuestion[currentQuestion].Answers[i]);
+                // WE APPEND the button in the div with the #trivButtons id.
+                $("#trivButtons").append(button);
+            };
+        }
 
-        // }
-
-        //this is the questions being pulled field- everything that needs to be asked
-    // and the correct answers will be selceted by this function
-
-  
-
-
+        function writeQuestions() {
+            for (var i = 0; i < questions.length; i++) {
+                $("#formQuiz").append(questions[i].question + "</br>");
+                //From within the first loop, write out the radio option buttons and assign them values and names of x and i respectively for later evaluation
+                for (var x = 0; x < questions[i].Answers.length; x++) {
+                    $("#formQuiz").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + questions[i].choices[x] + "</label>");
+                }
+                $("#formQuiz").append("<br/><br/>");
+            }
+        }
+        //Write the button to submit the form in the event the user does not want to wait for the timer expire event.
+        function writeSubmitButton() {
+            $("#formSubmit").append("<button id='submitQuiz' class='btn btn-primary btn-lg'>Submit</button>");
+        }
+        
 
 });
-               
-            
-
-
-       
-        
-   
