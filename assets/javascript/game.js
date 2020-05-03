@@ -11,13 +11,13 @@ $(document).ready(function() {
     let trivQuestions = [
         {
             Question : "Yoda is how old in the Return of The Jedi?",
-        Ansers:{ 
+        Answers:{ 
                 A: "700 years old", 
                 B: "800 years old", 
                 C: "900 years old", 
                 D: "1100 years old",
             },
-            correctAnswer: "C: 900 Years Old"
+            correctAnswer: "3"
         },
         {Question : "Luke wanted to get what from Tosche Station?",
         Answers:{   
@@ -26,16 +26,16 @@ $(document).ready(function() {
                 C: "Droid Inhibitor", 
                 D: "Lightsaber"
             },
-            correctAnswer: "B"
+            correctAnswer: "2"
         },
            {Question: "Anakin is what as a child?",
-           Ansers:{
+           Answers:{
                 A: "A Jedi", 
                 B: "A Store Owner", 
                 C: "A Pilot", 
                 D: "A Slave",
            },
-           correctAnswer: "D: A Slave"
+           correctAnswer: "4"
         },
             {Question: "Obi Wan Kenobi is called what by Princess Leia?",
             Answers:{
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 C: "Ben Kenobi", 
                 D: "The Negotiator"
             },
-            correctAnswer: "B: General Kenobi"
+            correctAnswer: "2"
         },
             {Question: "Who is pursuing the Rebel Blockade Runner in Episode IV?",
             Answers:{
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 C: "Darth Tyranus", 
                 D: "Darth Bane" 
             },
-            correctAnswer: "A: Darth Vader"            
+            correctAnswer: "1"            
                     },
     ] // this is going to be an array of questions held here
     let score = 0;
@@ -67,12 +67,12 @@ $(document).ready(function() {
     let userPick = [];
 
     //this is the timer for the game, where timer is the js timer; and time is the actual game time
-    let counter = 120;
+    let counter = 10;
     let timeOut = 1000 * 5;
     let timeDisplay;
     let timedOut = false;
     let isCorrect = false;
-    let inervalId;
+    
     let timerRunning = false
 
 
@@ -83,7 +83,7 @@ $(document).ready(function() {
         $("#startGame").click(function () {
             console.log('startGame')
             //Attach the setInterval object to a variable so that we can stop it later
-            let intervalID = setInterval(decrement, 1000);
+            let intervalId = setInterval(decrement, 1000);
             //Use jQuery to call the function to write the questions to the html
             writeQuestions();
             $("#startGame").hide();
@@ -124,10 +124,11 @@ $(document).ready(function() {
         function writeQuestions() {
             for (var i = 0; i < trivQuestions.length; i++) {
                 $("#formQuiz").append(trivQuestions[i].question + "</br>");
+                console.log()
                 //From within the first loop, write out the radio option buttons and assign them values and names of x and i respectively for later evaluation
-                for (var x = 0; x < trivQuestions[i].Answer.length; x++) {
-                    console.log("x")
+                for (var x = 0; x < trivQuestions[i].Answers.length; x++) {
                     $("#formQuiz").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + trivQuestions[i].Answers[x] + "</label>");
+                console.log("var")
                 }
                 $("#formQuiz").append("<br/><br/>");
             }
@@ -153,9 +154,9 @@ function showResults() {
     $("#timeRemaining").hide();
     $("#submitQuiz").hide();
     //userPick[] was used to record the player responses 
-    for (i = 0; i < questions.length; i++) {
+    for (i = 0; i < trivQuestions.length; i++) {
         // Note: === evaluated to NaN so == was required.
-        if (questions[i].answer == userPick[i]) {
+        if (trivQuestions[i].answer == userPick[i]) {
             correctAnswers++;
         }
         // Unanswered questions
@@ -169,12 +170,12 @@ function showResults() {
     }
     // Assigning an HTML id to a variable 
     var qR = $("#quizResults");
-    $(qR).append("<p>ALL DONE!</p>");
+    $(qR).append("<p>MAY THE FORCE BE WITH YOU, ALWAYS!</p>");
     $(qR).append("<p>Correct Answers: " + correctAnswers + "</p>");
     $(qR).append("<p>Incorrect Answers: " + incorrectAnswers + "</p>");
     $(qR).append("<p>Unanswered: " + missedAnswers + "</p>");
     //You must clear intervalID or it will repeat
-    clearInterval(intervalID);
+    clearInterval(intervalId);
 }
         
 
