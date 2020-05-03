@@ -64,7 +64,7 @@ $(document).ready(function() {
     let questionNumber = 0;
     let wins = 0;
     let incorrectAnswers =0;
-    
+    let userPick = [];
 
     //this is the timer for the game, where timer is the js timer; and time is the actual game time
     let timer = 60;
@@ -76,7 +76,7 @@ $(document).ready(function() {
     let timerRunning = false
 
 
-    for (var i = 0; i < questions.length; i++) {
+    for (var i = 0; i < trivQuestions.length; i++) {
         userPick[i] = null;
 
         
@@ -136,6 +136,8 @@ $(document).ready(function() {
         function writeSubmitButton() {
             $("#formSubmit").append("<button id='submitQuiz' class='btn btn-primary btn-lg'>Submit</button>");
         }
+    }
         
 
-});
+})
+    
