@@ -125,7 +125,7 @@ $(document).ready(function() {
             for (var i = 0; i < trivQuestions.length; i++) {
                 $("#formQuiz").append(trivQuestions[i].question + "</br>");
                 //From within the first loop, write out the radio option buttons and assign them values and names of x and i respectively for later evaluation
-                for (var x = 0; x < trivQuestions[i].correctAnswer.length; x++) {
+                for (var x = 0; x < trivQuestions[i].Answer.length; x++) {
                     console.log("x")
                     $("#formQuiz").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + trivQuestions[i].Answers[x] + "</label>");
                 }
