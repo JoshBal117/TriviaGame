@@ -67,7 +67,7 @@ $(document).ready(function() {
     let userPick = [];
 
     //this is the timer for the game, where timer is the js timer; and time is the actual game time
-    let timer = 60;
+    let counter = 120;
     let timeOut = 1000 * 5;
     let timeDisplay;
     let timedOut = false;
@@ -78,13 +78,12 @@ $(document).ready(function() {
 
     for (var i = 0; i < trivQuestions.length; i++) {
         userPick[i] = null;
-
-        
+    }    
 
         $("#startGame").click(function () {
             console.log('startGame')
             //Attach the setInterval object to a variable so that we can stop it later
-            intervalID = setInterval(decrement, 1000);
+            let intervalID = setInterval(decrement, 1000);
             //Use jQuery to call the function to write the questions to the html
             writeQuestions();
             $("#startGame").hide();
@@ -123,11 +122,11 @@ $(document).ready(function() {
         }
 
         function writeQuestions() {
-            for (var i = 0; i < questions.length; i++) {
-                $("#formQuiz").append(questions[i].question + "</br>");
+            for (var i = 0; i < trivQuestions.length; i++) {
+                $("#formQuiz").append(trivQuestions[i].question + "</br>");
                 //From within the first loop, write out the radio option buttons and assign them values and names of x and i respectively for later evaluation
-                for (var x = 0; x < questions[i].Answers.length; x++) {
-                    $("#formQuiz").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + questions[i].choices[x] + "</label>");
+                for (var x = 0; x < trivQuestions[i].correctAnswer.length; x++) {
+                    $("#formQuiz").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + trivQuestions[i].Answers[x] + "</label>");
                 }
                 $("#formQuiz").append("<br/><br/>");
             }
@@ -136,7 +135,46 @@ $(document).ready(function() {
         function writeSubmitButton() {
             $("#formSubmit").append("<button id='submitQuiz' class='btn btn-primary btn-lg'>Submit</button>");
         }
+    //Countdown counter
+function decrement() {
+    counter--;
+    $("#timeRemaining").html("<h2><mark>" + counter + " seconds remaining.</mark></h2>");
+    if (counter === 0) {
+        alert("Time Up!");
+        //Do additional logic and process the quiz results
+        showResults();
     }
+}
+//Write the results to the HTML
+function showResults() {
+    //Hide the questions | options | and submit button
+    $("#formQuiz").hide();
+    $("#timeRemaining").hide();
+    $("#submitQuiz").hide();
+    //userPick[] was used to record the player responses 
+    for (i = 0; i < questions.length; i++) {
+        // Note: === evaluated to NaN so == was required.
+        if (questions[i].answer == userPick[i]) {
+            correctAnswers++;
+        }
+        // Unanswered questions
+        else if (userPick[i] === null) {
+            missedAnswers++;
+        }
+        // Logic dictates the only other possible outcome is a wrong answer
+        else {
+            incorrectAnswers++;
+        }
+    }
+    // Assigning an HTML id to a variable 
+    var qR = $("#quizResults");
+    $(qR).append("<p>ALL DONE!</p>");
+    $(qR).append("<p>Correct Answers: " + correctAnswers + "</p>");
+    $(qR).append("<p>Incorrect Answers: " + incorrectAnswers + "</p>");
+    $(qR).append("<p>Unanswered: " + missedAnswers + "</p>");
+    //You must clear intervalID or it will repeat
+    clearInterval(intervalID);
+}
         
 
 })
