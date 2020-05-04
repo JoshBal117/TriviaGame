@@ -116,7 +116,7 @@ function showResults() {
     //userPick[] was used to record the player responses 
     for (i = 0; i < trivQuestions.length; i++) {
         // Note: === evaluated to NaN so == was required.
-        if (trivQuestions[i].answer == userPick[i]) {
+        if (trivQuestions[i].Answers == userPick[i]) {
             correctAnswers++;
         }
         // Unanswered questions
